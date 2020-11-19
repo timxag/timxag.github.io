@@ -21,10 +21,25 @@
       console.log(uri)
       return false;
   }
+   function clickHandler2() {
+      deeplink.open(uri);
+      console.log(uri)
+      deeplink.setup({
+        iOS: {
+            appId: "1135404935"
+        },
+        android: {
+            appId: "ru.mkb.mobile"
+        }
+      });
+      return false;
+  }
   </script>
   <title></title>
   
 </head>
 <body>
-  <a href="#" data-uri="mkb2://NewUniversalProduct" onclick="clickHandler(this.dataset.uri)">open mkb update</a>
+  <a href="#" onclick="clickHandler(mkb2://NewUniversalProduct)">open mkb deeplink</a>
+  <a href="#" onclick="clickHandler2">open mkb deeplink2</a>
+  <a href="mkb2://NewUniversalProduct"">open mkb href</a>
 </body>
