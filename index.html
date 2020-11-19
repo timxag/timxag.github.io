@@ -26,12 +26,21 @@
         }
     });
 
-    function clickHandler(uri, isMkb) {
+    function clickHandler(uri, isMkb, appLink) {
         if (isMkb)
         deeplink.setup({
             iOS: {
-                appName: "mkb",
+                appName: "apple-store",
                 appId: "1135404935"
+            },
+            android: {
+                appId: "ru.mkb.mobile"
+            }
+        });
+        if (appLink)
+        deeplink.setup({
+            iOS: {
+                storeUrl: "https://apps.apple.com/app/apple-store/id1135404935"
             },
             android: {
                 appId: "ru.mkb.mobile"
@@ -45,8 +54,9 @@
   
 </head>
 <body>
-  <a href="#" data-uri="fb://profile" onclick="clickHandler(this.dataset.uri)">open fb</a>
-  <a href="#" data-uri="mkb2://NewUniversalProduct" onclick="clickHandler(this.dataset.uri, true)">open mkb deeplink</a>
+  <a href="#" data-uri="fb://profile" onclick="clickHandler(this.dataset.uri)">open fb</a><br>
+  <a href="#" data-uri="mkb2://NewUniversalProduct" onclick="clickHandler(this.dataset.uri, true)">open mkb deeplink</a><br>
+  <a href="#" data-uri="mkb2://NewUniversalProduct" onclick="clickHandler(this.dataset.uri, false, true)">open mkb deeplink with store url</a><br>
   <a href="mkb2://NewUniversalProduct">open mkb href</a><br>
-  <p>Updated: 19 50</p>
+  <p>Updated: 20 03</p>
 </body>
