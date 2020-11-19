@@ -26,7 +26,11 @@
         }
     });
 
-    function clickHandler(uri, isMkb, appLink) {
+    function clickHandler(uri, isMkb, appLink, isTest) {
+        if (isTest) {
+          setTimeout(function () { window.location = "https://apps.apple.com/app/apple-store/id1135404935"; }, 25);
+          window.location = uri;
+        }
         if (isMkb)
         deeplink.setup({
             iOS: {
@@ -57,6 +61,7 @@
   <a href="#" data-uri="fb://profile" onclick="clickHandler(this.dataset.uri)">open fb</a><br>
   <a href="#" data-uri="mkb2://NewUniversalProduct" onclick="clickHandler(this.dataset.uri, true)">open mkb deeplink</a><br>
   <a href="#" data-uri="mkb2://NewUniversalProduct" onclick="clickHandler(this.dataset.uri, false, true)">open mkb deeplink with store url</a><br>
+  <a href="#" data-uri="mkb2://NewUniversalProduct" onclick="clickHandler(this.dataset.uri, false, false, true)">open mkb with timeout</a><br>
   <a href="mkb2://NewUniversalProduct">open mkb href</a><br>
-  <p>Updated: 20 03</p>
+  <p>Updated: 21 18</p>
 </body>
