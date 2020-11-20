@@ -26,42 +26,57 @@
         }
     });
 
-    function clickHandler(uri, isMkb, appLink, isTest) {
-        if (isTest) {
-          setTimeout(function () { window.location = "https://apps.apple.com/app/apple-store/id1135404935"; }, 25);
-          window.location = uri;
+    function isIOS() {
+    const iDevices = [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod'
+    ];
+
+    if (navigator.platform) {
+        while (iDevices.length) {
+            if (navigator.platform === iDevices.pop()) {
+                return true;
+            }
         }
-        if (isMkb)
-        deeplink.setup({
-            iOS: {
-                appName: "apple-store",
-                appId: "1135404935"
-            },
-            android: {
-                appId: "ru.mkb.mobile"
-            }
-        });
-        if (appLink)
-        deeplink.setup({
-            iOS: {
-                storeUrl: "https://apps.apple.com/app/apple-store/id1135404935"
-            },
-            android: {
-                appId: "ru.mkb.mobile"
-            }
-        });
-        deeplink.open(uri);
-        return false;
     }
+
+    return false;
+}
+
+let openedApp = false;
+
+function openAppOrStore() {
+    window.alert = function alert (message) {
+        $('body').append('<p>' + message + '</p>' )
+    }
+    setTimeout(function () {
+        if (!openedApp) {
+            window.location = "https://apps.apple.com/app/apple-store/id1135404935";
+            setTimeout(function () {
+                window.close();
+            }, 50);
+        }
+    }, 25);
+    const iosLink = "mkb2://NewUniversalProduct";
+    try {
+        window.location = iosLink;
+        if (window.location.href.indexOf("mkb2://") !== -1) {
+            openedApp = true;
+            // window.close();
+        }
+    } catch (e) {   
+    }
+}
   </script>
   <title></title>
   
 </head>
 <body>
-  <a href="#" data-uri="fb://profile" onclick="clickHandler(this.dataset.uri)">open fb</a><br>
-  <a href="#" data-uri="mkb2://NewUniversalProduct" onclick="clickHandler(this.dataset.uri, true)">open mkb deeplink</a><br>
-  <a href="#" data-uri="mkb2://NewUniversalProduct" onclick="clickHandler(this.dataset.uri, false, true)">open mkb deeplink with store url</a><br>
-  <a href="#" data-uri="mkb2://NewUniversalProduct" onclick="clickHandler(this.dataset.uri, false, false, true)">open mkb with timeout</a><br>
+  <a href="#"  onclick="openAppOrStore()">open mkb</a><br>
   <a href="mkb2://NewUniversalProduct">open mkb href</a><br>
   <p>Updated: 21 18</p>
 </body>
