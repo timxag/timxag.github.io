@@ -1,0 +1,17 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [{
+            "appID": "F4XQ5VCU5n.ru.mkb.mobile",
+            "paths": ["/mkb"]
+            },
+            {
+            "appID": "3EFP2B895H.bernikovich.UniversalLinks",
+            "paths": ["/test"]
+            },
+            {
+            "appID": "74D322Z5HV.com.habrahabr.ios.application.swift",
+            "paths": ["/habr"]
+        }]
+    }
+}
